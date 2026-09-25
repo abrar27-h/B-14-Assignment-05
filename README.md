@@ -29,46 +29,85 @@ React Concept Questions & Answers
 
 1. What is JSX, and why is it used in React?
 
-JSX (JavaScript XML) is a syntax extension for JavaScript. It allows us to write HTML-like markup directly inside our JavaScript files. 
-It is used in React because it makes code easier to read, write, and maintain by combining UI structure and logic in one place.
+JSX stands for (JavaScript XML). It is a syntax extension for JavaScript that allows us to write (HTML-like markup directly within JavaScript code).
 
+JSX is used in React because it makes the UI structure easier to read and understand. It also allows us to keep the 
+(UI structure and its logic together), which makes the code easier to develop and maintain.
+
+---
 
 2. What is the difference between props and state?
 
-Props (properties) are passed down from a parent component to a child component and are read-only (immutable).
-State is managed *inside* a component, can change over time based on user interactions, and 
-triggers a re-render when updated.
+'Props' are data passed from a 'parent component to a child component'. They are read-only, meaning the child component 
+cannot directly modify them.
 
+'State', on the other hand, is data managed 'inside a component'. It can change over time, usually because of user 
+interactions or other events. When the state changes, React re-renders the component to update the UI.
 
-3. What does the useState hook do, and where did you use it in this project?
+---
 
-The `useState` hook allows functional components to manage local state. In this project, it is used to handle UI 
-states such as toggling the mobile navigation menu (`isOpen`) and managing the selected technologies in the stack builder.
+3. What does the `useState` hook do, and where did you use it in this project?
 
+The `useState` hook allows functional components in React to **create and manage local state**.
 
-4. What does the useEffect hook do, and why did you need it to load the JSON data?
+In this project, I used `useState` to manage different UI states, such as (opening and closing the mobile navigation 
+menu using `isOpen`), and keeping track of the (technologies selected in the stack builder).
 
-The `useEffect` hook lets you perform side effects (like data fetching, subscriptions, or DOM manipulation) in 
-functional components. It was needed to fetch and load the external `Tech.json` data asynchronously when the 
-component first mounts.
+---
 
+4. What does the `useEffect` hook do, and why did you need it to load the JSON data?
 
-5. Why does every item in a `.map()` list need a unique key prop?
+The `useEffect` hook is used to handle (side effects) in functional components. Examples of side effects include fetching data, 
+setting up subscriptions, or interacting with external systems.
 
-React uses `key` props to efficiently identify which items in a list have changed, been added, or been removed. 
-This optimizes the reconciliation process and prevents unnecessary re-rendering of entire lists.
+In this project, I used `useEffect` to (fetch and load the external `Tech.json` data when the component initially loads). 
+This allows the application to retrieve the technology data asynchronously and then display it in the UI.
 
+---
 
-6. What is conditional rendering? Show one place you used it (example: the empty stack message).
+5. Why does every item in a `.map()` list need a unique `key` prop?
 
-Conditional rendering is the process of rendering different UI elements or components based on certain conditions 
-(using ternary operators or `&&`). For example, displaying an empty stack message when no technology is 
-selected:```tsx {selectedStack.length === 0 && <p>Your stack is empty.</p>}
+React requires a unique `key` for items rendered through `.map()` so that it can (identify each item efficiently).
 
+When the list changes, React uses these keys to determine which items were (added, removed, or updated). This helps 
+React update only the necessary parts of the UI instead of unnecessarily re-rendering the entire list.
 
-7. How do you pass data from a parent component to a child component, and how does a child send something
-   back to the parent?
+---
 
-Parent to Child: Data is passed down using props (e.g., <ChildComponent data={value} />).
-Child to Parent: The parent passes a callback function down via props to the child. The child invokes that 
-function with arguments to send data back up to the parent.
+6. What is conditional rendering? Show one place you used it.
+
+'Conditional rendering' means displaying different UI elements depending on whether a certain condition is 
+ true or false.
+
+For example, in this project, I used conditional rendering to display a message when no technology has been 
+selected:
+
+```tsx
+{selectedStack.length === 0 && <p>Your stack is empty.</p>}
+```
+
+Here, the message will only appear when `selectedStack.length` is equal to `0`.
+
+---
+
+7. How do you pass data from a parent component to a child component, and how does a child send something back
+   to the parent?
+
+Data is passed from a 'parent to a child component using props'. For example:
+
+```tsx
+<ChildComponent data={value} />
+```
+
+The child component can then access the `data` prop.
+
+To send information from the 'child back to the parent', the parent can pass a 'callback function as a prop'. 
+The child then calls that function with the required data.
+
+For example:
+
+```tsx
+<ChildComponent onSelect={handleSelect} />
+```
+
+The child can call `onSelect(value)` to send the selected value back to the parent.
