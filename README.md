@@ -52,8 +52,7 @@ React uses `key` props to efficiently identify which items in a list have change
 
 6. What is conditional rendering? Show one place you used it (example: the empty stack message).
 
-Conditional rendering is the process of rendering different UI elements or components based on certain conditions (using ternary operators or `&&`). For example, displaying an empty stack message when no technology is selected:```tsx
-{selectedStack.length === 0 && <p>Your stack is empty.</p>}
+Conditional rendering is the process of rendering different UI elements or components based on certain conditions (using ternary operators or `&&`). For example, displaying an empty stack message when no technology is selected:```tsx {selectedStack.length === 0 && <p>Your stack is empty.</p>}
 
 
 7. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
